@@ -63,7 +63,6 @@ contract DSCEngine is ReentrancyGuard {
     using OracleLib for AggregatorV3Interface;
     error OracleLib__StalePrice();
 
-
     ////////////////////////
     //  STATE VARIABLE    //
     ////////////////////////
@@ -392,7 +391,7 @@ contract DSCEngine is ReentrancyGuard {
         return healthFactor;
     }
 
-     function getCollateralBalanceOfUser(address user, address token) external view returns (uint256) {
+    function getCollateralBalanceOfUser(address user, address token) external view returns (uint256) {
         return s_collateralDeposits[user][token];
     }
 

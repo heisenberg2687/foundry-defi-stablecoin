@@ -33,7 +33,7 @@ contract Handler is Test {
         weth = ERC20Mock(collateralTokens[0]);
         wbtc = ERC20Mock(collateralTokens[1]);
 
-        ethUsdPriceFeed =  MockV3Aggregator(dsce.getCollateralTokenPriceFeed(address(weth)));
+        ethUsdPriceFeed = MockV3Aggregator(dsce.getCollateralTokenPriceFeed(address(weth)));
     }
 
     // redeem collateral <-
@@ -43,7 +43,7 @@ contract Handler is Test {
             return; // no users with collateral to mint against
         }
         address sender = usersWithCollateralDeposited[addressSeed % usersWithCollateralDeposited.length];
-        (uint256 collateralValueInUsd,uint256 totalDscMinted) = dsce.getAccountInformation(sender);
+        (uint256 collateralValueInUsd, uint256 totalDscMinted) = dsce.getAccountInformation(sender);
 
         int256 maxDscToMint = (int256(collateralValueInUsd) / 2) - int256(totalDscMinted);
         if (maxDscToMint < 0) {
@@ -93,7 +93,7 @@ contract Handler is Test {
         dsce.redeemCollateral(address(collateral), amountCollateral);
         vm.stopPrank();
     }
-   // this breaks our invarient test suit!!!
+    // this breaks our invarient test suit!!!
     // function updateCollateralPrice(uint256 newPrice) public {
     //     int256 newPriceInt = int256(uint256(newPrice));
     //     ethUsdPriceFeed.updateAnswer(newPriceInt);
